@@ -1,9 +1,8 @@
-import * as React from 'react';
-import Index from '../components/Index';
-import Form from '../components/Form';
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import Index from '../components/Index'
+import Form from '../components/Form'
 
-const Stack =  createNativeStackNavigator();
+const Stack  = createNativeStackNavigator()
 
 const Routes = () => {
     return (
@@ -12,6 +11,6 @@ const Routes = () => {
             <Stack.Screen name="Form" component={Form} />
         </Stack.Navigator>
     );
-}
+};
 
 export default Routes;
