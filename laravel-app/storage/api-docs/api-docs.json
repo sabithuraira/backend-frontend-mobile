@@ -1,0 +1,155 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentation My API",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/todo": {
+            "get": {
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Get List Todo Data",
+                "description": "enter your description here",
+                "operationId": "todo",
+                "responses": {
+                    "default": {
+                        "description": "return array model todo"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Store Todo",
+                "description": "-",
+                "operationId": "todo/store",
+                "requestBody": {
+                    "description": "form todo",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/api/todo/{id}": {
+            "get": {
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Detail",
+                "description": "-",
+                "operationId": "todo/show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Enkripsi",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "return model todo"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Update todo",
+                "description": "-",
+                "operationId": "todo/update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Enkripsi",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "form todo",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Todo"
+                ],
+                "summary": "Delete todo",
+                "description": "-",
+                "operationId": "todo/delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID Enkripsi",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": ""
+                    }
+                }
+            }
+        }
+    }
+}

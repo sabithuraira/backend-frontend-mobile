@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\Crypt;
 class TodoController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/todo",
+     *     tags={"Todo"},
+     *     summary="Get List Todo Data",
+     *     description="enter your description here",
+     *     operationId="todo",
+     *     @OA\Response(
+     *         response="default",
+     *         description="return array model todo"
+     *     )
+     * )
      */
     public function index(){
         $datas = Todo::orderBy('id', 'DESC')->paginate(20);
@@ -24,11 +32,27 @@ class TodoController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     /**
+     * @OA\Post(
+     *     path="/api/todo",
+     *     tags={"Todo"},
+     *     summary="Store Todo",
+     *     description="-",
+     *     operationId="todo/store",
+     *     @OA\RequestBody(
+     *          required=true,
+     *          description="form todo",
+     *          @OA\JsonContent(
+     *              required={"title"},
+     *              @OA\Property(property="title", type="string"),
+     *              @OA\Property(property="description", type="string"),
+     *          ),
+     *      ),
+     *     @OA\Response(
+     *         response="default",
+     *         description=""
+     *     )
+     * )
      */
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
@@ -54,10 +78,26 @@ class TodoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *     path="/api/todo/{id}",
+     *     tags={"Todo"},
+     *     summary="Detail",
+     *     description="-",
+     *     operationId="todo/show",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="ID Enkripsi",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description="return model todo"
+     *     )
+     * )
      */
     public function show($id){
         try{
@@ -78,12 +118,37 @@ class TodoController extends Controller
     }
 
 
+    
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Put(
+     *     path="/api/todo/{id}",
+     *     tags={"Todo"},
+     *     summary="Update todo",
+     *     description="-",
+     *     operationId="todo/update",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="ID Enkripsi",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *     @OA\RequestBody(
+     *          required=true,
+     *          description="form todo",
+     *          @OA\JsonContent(
+     *              required={"title"},
+     *              @OA\Property(property="title", type="string"),
+     *              @OA\Property(property="description", type="string"),
+     *          ),
+     *      ),
+     *     @OA\Response(
+     *         response="default",
+     *         description=""
+     *     )
+     * )
      */
     public function update(Request $request, $id){
         $validator = Validator::make($request->all(), [
@@ -119,10 +184,26 @@ class TodoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Delete(
+     *     path="/api/todo/{id}",
+     *     tags={"Todo"},
+     *     summary="Delete todo",
+     *     description="-",
+     *     operationId="todo/delete",
+     *     @OA\Parameter(
+     *          name="id",
+     *          description="ID Enkripsi",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *     ),
+     *     @OA\Response(
+     *         response="default",
+     *         description=""
+     *     )
+     * )
      */
     public function destroy($id){
         try{
